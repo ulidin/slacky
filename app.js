@@ -28,7 +28,7 @@ db.once('open', () => {
 //     .then(() => console.log('connected to db'))
 //     .catch(error => console.log(error))
 
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 // EJS
 app.set('view engine', 'ejs')
