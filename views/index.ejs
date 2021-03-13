@@ -10,14 +10,16 @@
 </head>
 
 <body>
-    <h1>Slacky</h1>
+    <!-- <h1>Slacky</h1> -->
+    <h1 contenteditable spellcheck="false">Slacky</h1>
+
     <form id="form" method="post" action="/create">
         <input id="input" type="text" name="name" placeholder="Channel name here" /><br />
         <input id="input" type="text" name="description" placeholder="Channel description here" /><br />
         <span>Private</span><input type="checkbox" name="private" /><br />
         <input type="submit" value="Create Channel" />
     </form>
-    <h2>My channels</h2>
+    <h4>My channels</h4>
     <table>
         <!-- <tr>
             <th>Name</th>

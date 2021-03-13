@@ -35,10 +35,9 @@
     </ul>
 
     <form id="form" method="POST" action="/channel/<%= channel._id %>">
-        <input id="input" type="text" name="by" placeholder="Username" id="by" autocomplete="off"><br>
-        <textarea name="content" cols="30" rows="7" placeholder="Post" id="content" autocomplete="off"></textarea><br>
-        <input type="submit" value="Post" id="submit">
-        <a href="/">Back</a>
+        <input class="input" type="text" name="by" placeholder="Username" id="by" autocomplete="off"><br>
+        <textarea id="content" name="content" cols="30" rows="7" placeholder="Post" autocomplete="off"></textarea><br>
+        <input type="submit" value="Post" id="submit" disabled>
     </form>
     <!-- <button onclick="window.location.href='/'">Back to start</button> -->
 </body>

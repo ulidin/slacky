@@ -34,7 +34,7 @@ db.once('open', () => {
 app.set('view engine', 'ejs')
 app.use(expressEjsLayout)
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: true }))
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
