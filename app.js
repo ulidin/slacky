@@ -10,10 +10,13 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 
+
 require('./config/passport')(passport)
 
 // app.use('/public', express.static(path.join(__dirname, 'public')));
 
+
+// Connection to mognodb
 mongoose.connect('mongodb://localhost:27017/slacky', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,11 +27,7 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// mongoose.connect('mongodb://localhost:27017/login')
-//     .then(() => console.log('connected to db'))
-//     .catch(error => console.log(error))
 
-// app.use(express.urlencoded({ extended: true }));
 
 // EJS
 app.set('view engine', 'ejs')
@@ -37,7 +36,6 @@ app.use(expressEjsLayout)
 app.use(express.urlencoded({ extended: true }))
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-
 
 
 // Sessions
