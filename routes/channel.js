@@ -9,7 +9,8 @@ const Post = require('../models/post');
 router.get('/:id', (req, res) => {
   Channel.findById(req.params.id, (err, data) => {
     if (err) return console.error(err);
-    res.render('channel.ejs', { channel: data });
+    console.log(req.user)
+    res.render('channel.ejs', { channel: data, user: req.user });
   });
 });
 
