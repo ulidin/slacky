@@ -10,6 +10,8 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 
+const initRoutes = require("./routes/web");
+initRoutes(app);
 
 require('./config/passport')(passport)
 
@@ -21,6 +23,7 @@ mongoose.connect('mongodb://localhost:27017/slacky', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
