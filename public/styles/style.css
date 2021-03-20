@@ -38,26 +38,42 @@ body {
     backdrop-filter: blur(10px);
   }
   
-  .input {
+  #input {
     border: 1px solid;
     padding: 0 1rem;
     flex-grow: 0.1;
-    border-radius: 2rem;
+    border-radius: 10px;
     margin: 0.25rem;
+    width: 100%;
   }
   
-  .input:focus {
+  #input:focus {
     outline: none;
   }
   
-  #form > button {
-    background: #333;
+  .button {
+    background: rgb(65, 79, 141);
     border: none;
     padding: 0 1rem;
     margin: 0.25rem;
-    border-radius: 3px;
+    border-radius: 10px;
     outline: none;
     color: #fff;
+    height: 100px;
+    width: 155px;
+    font-size: 16px;
+  }
+
+  #form > button {
+    background: rgb(65, 79, 141);
+    border: none;
+    padding: 0 1rem;
+    margin: 0.25rem;
+    border-radius: 10px;
+    outline: none;
+    color: #fff;
+    height: 4rem;
+    width: 20%;
   }
   
   #messages {

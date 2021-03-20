@@ -10,21 +10,17 @@
 </head>
 
 <body>
-    <!-- <h1>Slacky</h1> -->
     <h1 contenteditable spellcheck="false">Slacky</h1>
 
     <form id="form" method="post" action="/create">
         <input id="input" type="text" name="name" placeholder="Channel name here" /><br />
         <input id="input" type="text" name="description" placeholder="Channel description here" /><br />
-        <span>Private</span><input type="checkbox" name="private" /><br />
-        <input type="submit" value="Create Channel" />
+        <!-- <span>Private</span><input type="checkbox" name="private" /><br /> -->
+        <!-- <input id="input" type="submit" value="Create Channel" /> -->
+        <button class="button">Create Channel</button>
     </form>
     <h3>Channels:</h3>
     <table>
-        <!-- <tr>
-            <th>Name</th>
-            <th>Delete</th>
-        </tr> -->
         <% channels.forEach( channel=> { %>
             <tr>
                 <td><a href="/channel/<%= channel._id %>">
