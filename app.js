@@ -4,7 +4,6 @@ const path = require('path')
 const router = express.Router()
 
 const http = require('http').Server(app)
-const io = require('socket.io')(http)
 
 const mongoose = require('mongoose');
 
@@ -13,12 +12,9 @@ const flash = require('connect-flash')
 const session = require('express-session')
 const passport = require('passport')
 
-// const initRoutes = require("./routes/web");
-// initRoutes(app);
 
 require('./config/passport')(passport)
 
-// app.use('/public', express.static(path.join(__dirname, 'public')));
 
 
 // Connection to mognodb
@@ -78,27 +74,6 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/views/index.ejs')
 });
 
-
-// Socket -------------
-app.use('/public', express.static(path.join(__dirname, 'public')))
-
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/html/index.html')
-});
-
-io.on('connection', (socket) => {
-    console.log('a user connected');
-
-    socket.on('chat message', message => {
-        // console.log('Recieved message: ' + message)
-        io.emit('chat message', message)
-    })
-
-    socket.on('disconnect', () => {
-        console.log('a user disconnected')
-    })
-});
-//-------------
 
 app.listen(3000, () => {
   console.log('App listening on port 3000');
