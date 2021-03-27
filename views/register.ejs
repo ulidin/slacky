@@ -1,17 +1,30 @@
-<form action="/users/register" method="post">
-    <h1 class="h3 mb-3 fw-normal">Fill the form for registration</h1>
-    <%- include('partials/messages') %>
-        <label for="inputName" class="visually-hidden">Name</label>
-        <input type="text" id="inputName" class="form-control" name="name" placeholder="Name"
-            value="<%= typeof name != 'undefined' ? name : '' %>" required autofocus />
-
-        <label for="inputEmail" class="visually-hidden">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Email address"
-            value="<%= typeof email != 'undefined' ? email : '' %>" required />
-
-        <label for="inputPassword" class="visually-hidden">Password</label>
-        <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password"
-            required />
-
-        <button class="w-100 btn btn-outline-primary" type="submit">Register</button>
-</form>
+<h1>Register page</h1>
+<% if (typeof message !=='undefined' ) { %>
+    <p>
+        <%= message %>
+    </p>
+    <% } %>
+        <form action="/users/register" method="POST">
+            <div>
+                <label for="name">Name</label>
+                <input type="name" name="name" autocomplete="name" placeholder="Enter Name"
+                    value="<%= typeof name != 'undefined' ? name : '' %>" />
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" autocomplete="email" placeholder="Enter Email"
+                    value="<%= typeof email != 'undefined' ? email : '' %>" />
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" autocomplete="new-password" placeholder="Create Password"
+                    value="<%= typeof password != 'undefined' ? password : '' %>" />
+            </div>
+            <div>
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" autocomplete="new-password" placeholder="Confirm Password"
+                    value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        <p>Have An Account? <a href="/login">Login</a></p>

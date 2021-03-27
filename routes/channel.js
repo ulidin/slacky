@@ -1,32 +1,122 @@
 const express = require('express');
 const router = express.Router();
-
-router.use(express.urlencoded({ extended: true }));
-
 const Channel = require('../models/channel');
 const Post = require('../models/post');
 
-router.get('/:id', (req, res) => {
-  Channel.findById(req.params.id, (err, data) => {
+const { ensureAuthenticated } = require('../config/auth.js');
+router.use(express.urlencoded({ extended: true }));
+
+router.get('/', ensureAuthenticated, (req, res) => {
+  res.render('index', { user: req.user });
+});
+
+router.post('/create', ensureAuthenticated, (req, res) => {
+  const channel = new Channel({
+    name: req.body.name,
+    description: req.body.description || '',
+    private: req.body.private ? true : false,
+  });
+  channel.save((err) => {
     if (err) return console.error(err);
-    console.log(req.user)
-    res.render('channel.ejs', { channel: data, user: req.user });
+    console.log('Channel created.');
+    res.redirect('/channels');
   });
 });
 
-router.post('/:id', (req, res) => {
-  const post = new Post({
-    by: req.body.by,
-    content: req.body.content,
-  });
-  Channel.updateOne(
-    { _id: req.params.id },
-    { $push: { posts: post } },
-    (err) => {
+
+//Handle individual channel
+
+router.get('/:id', ensureAuthenticated, (req, res) => {
+  Channel.findById(req.params.id)
+    .populate({
+      path: 'posts',
+      populate: {
+        path: 'byId',
+        model: 'User',
+      },
+    })
+    .exec((err, channel) => {
       if (err) return console.error(err);
-      res.redirect(`/channel/${req.params.id}`);
-    }
-  );
+      res.render('channel.ejs', { channel: channel, user: req.user });
+    });
 });
+
+//DMorProfile
+router.get('/DMorProfile/:id', ensureAuthenticated, (req, res) => {
+  if (req.params.id === req.user._id.toString()) {
+    res.redirect('/users/profile');
+  } else {
+    res.send('<h1>Here we will add DM functionality</h1>');
+  }
+});
+
+//Edit and Delete posts
+router.get(
+  '/editPost/:channel_id/:post_id',
+  ensureAuthenticated,
+  (req, res) => {
+    Post.findById(req.params.post_id)
+      .populate('byId')
+      .exec((err, data) => {
+        if (err) return console.error(err);
+        res.render('editPost', {
+          post: data,
+          user: req.user,
+          channel_id: req.params.channel_id,
+        });
+      });
+  }
+);
+
+router.post(
+  '/editPost/:channel_id/:post_id',
+  ensureAuthenticated,
+  (req, res) => {
+    if (req.body.byId.toString() === req.user._id.toString()) {
+      const newContent = req.body.postContent;
+      Post.findByIdAndUpdate(req.params.post_id, {
+        $set: { content: newContent },
+      }).exec((err, data) => {
+        if (err) return console.error(err);
+        res.redirect(`/channels/${req.params.channel_id}`);
+      });
+    } else {
+      res.send('<h1>You are not authorized to do this.</h1>');
+    }
+  }
+);
+
+router.get(
+  '/editPost/:channel_id/:post_id',
+  ensureAuthenticated,
+  (req, res) => {
+    Post.findById(req.params.post_id)
+      .populate('byId')
+      .exec((err, data) => {
+        if (err) return console.error(err);
+        res.render('editPost', { post: data, user: req.user });
+      });
+  }
+);
+
+router.get(
+  '/deletePost/:channel_id/:post_id',
+  ensureAuthenticated,
+  (req, res) => {
+    Post.findById(req.params.post_id)
+      .populate('byId')
+      .exec((err, post) => {
+        if (err) return console.error(err);
+        if (req.user._id.toString() === post.byId._id.toString()) {
+          Post.findByIdAndDelete(req.params.post_id).exec((err, data) => {
+            if (err) return console.error(err);
+            res.redirect(`/channels/${req.params.channel_id}`);
+          });
+        } else {
+          res.send('<h1>You are not authorized to do this.</h1>');
+        }
+      });
+  }
+);
 
 module.exports = router;

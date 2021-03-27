@@ -149,6 +149,36 @@ img:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
 
+
+
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.medium_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.icon_image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+@media (min-width: 450px) {
+  .sidebar {
+    float: left;
+  }
+
+  main {
+    float: right;
+  }
+}
+
+
 /*--------------*/
 @import url(https://fonts.googleapis.com/css?family=Exo+2:200i);
 

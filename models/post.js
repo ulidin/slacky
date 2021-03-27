@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const postSchema = new mongoose.Schema({
   by: {
@@ -6,6 +7,11 @@ const postSchema = new mongoose.Schema({
     required: true,
     minLength: 1,
     maxLength: 100,
+  },
+  byId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
   content: {
     type: String,

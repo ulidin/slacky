@@ -1,80 +1,54 @@
+const path = require('path');
 const express = require('express');
 const app = express();
-const path = require('path')
-const router = express.Router()
+const expressEjsLayout = require('express-ejs-layouts');
+const fileUpload = require('express-fileupload');
+const passport = require('passport');
+const session = require('express-session');
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+require('./socket')(io);
 
-const http = require('http').Server(app)
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+require('./config/passport')(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.set('view engine', 'ejs');
+app.use(expressEjsLayout);
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(fileUpload({ createParentPath: true }));
 
 const mongoose = require('mongoose');
-
-const expressEjsLayout = require('express-ejs-layouts')
-const flash = require('connect-flash')
-const session = require('express-session')
-const passport = require('passport')
-
-
-require('./config/passport')(passport)
-
-
-
-// Connection to mognodb
 mongoose.connect('mongodb://localhost:27017/slacky', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
+app.use(express.urlencoded({ extended: true }));
 
-
-// EJS
-app.set('view engine', 'ejs')
-app.use(expressEjsLayout)
-
-app.use(express.urlencoded({ extended: true }))
-
-app.use('/public', express.static(path.join(__dirname, 'public')));
-
-
-// Sessions
-app.use(session({
-  secret: 'secret',
-  resave: true,
-  saveUninitialized: true
-}))
-
-// Passport
-app.use(passport.initialize())
-app.use(passport.session())
-
-// Flash
-app.use(flash())
-app.use((request, response, next) => {
-  response.locals.success_msg = request.flash('success_msg')
-  response.locals.error_msg = request.flash('error_msg')
-  response.locals.error = request.flash('error')
-  next()
-})
-
-
-// Routes
 const indexRouter = require('./routes/index');
-const channelRouter = require('./routes/channel');
+const channelsRouter = require('./routes/channel');
 const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
 
 app.use('/', indexRouter);
-app.use('/channel/', channelRouter);
-app.use('/users', usersRouter);
+app.use('/channels/', channelsRouter);
+app.use('/users/', usersRouter);
+app.use('/api/', apiRouter);
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/views/index.ejs')
-});
-
-
-app.listen(3000, () => {
+http.listen(3000, () => {
   console.log('App listening on port 3000');
 });

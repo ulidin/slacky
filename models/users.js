@@ -18,8 +18,11 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
-
+    },
+    profilePhoto: {
+        type: String,
+        default: '/public/nophoto.png'
+      }
 })
 
 const User = mongoose.model('User', UserSchema)

@@ -1,10 +1,9 @@
 module.exports = {
-    ensureAuthenticated: (request, response, next) => {
-        if (request.isAuthenticated()) {
-            return next()
-        } else {
-            request.flash('error_msg', 'Please login to view this resource')
-            response.redirect('/users/login')
-        }
-    }
-}
+    ensureAuthenticated: (req, res, next) => {
+      if (req.isAuthenticated()) {
+        return next();
+      }
+      const message = 'Please login to view this resource.';
+      res.render('login', { message });
+    },
+  };
