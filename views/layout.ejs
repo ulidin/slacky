@@ -9,30 +9,7 @@
 <link rel="stylesheet" href="/public/styles/style.css">
 </head>
 <header>
-    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #88c7c9;">
-
-        <ul>
-            <li>
-                <a href="/channels">Home</a>
-            </li>
-            <% if (typeof user !=='undefined' ) { %>
-                <li>
-                    <span>Logged in as <%= user.name %></span>
-                </li>
-                <li>
-                    <a href="/users/logout">Log Out</a>
-                </li>
-                <input type="text" value="<%= user.id %>" id="userId" hidden>
-                <% } else { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Log In</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/register">Register</a>
-                    </li>
-                    <% } %>
-        </ul>
-    </nav>
+    <%- include ('./partials/navbar') %>
 </header>
 
 <body>

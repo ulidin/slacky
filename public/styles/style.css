@@ -7,6 +7,61 @@ html, body {
   height: 100%;
 }
 
+
+.topnav {
+  position: relative;
+  overflow: hidden;
+  background-color: #66b5b8;
+}
+
+.topnav a {
+  float: left;
+  color: #000000;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #417a7c;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: #cccccc;
+}
+
+.topnav-centered a {
+  pointer-events: none;
+  float: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.topnav-right {
+  float: right;
+}
+
+/* Responsive navigation menu (for mobile devices) */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav-right {
+    float: none;
+    display: block;
+  }
+  
+  .topnav-centered a {
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+}
+
+
 .header {
   height: 50px;
   background: #2196F3;
@@ -15,7 +70,7 @@ html, body {
 .sidebar {
   float: left;
   width: 250px;
-  height: calc(100% - 50px);
+  height: calc(100% - 5px);
   background: #cdefff;
   overflow: auto;
 
@@ -23,7 +78,7 @@ html, body {
 .handle {
   float: left;
   width: 10px;
-  height: calc(100% - 50px);
+  height: calc(100% - 5px);
   background: #ddd;
   cursor: ew-resize;
 }
@@ -38,6 +93,9 @@ p {
   background: #b1e7f5;
 }
 
+li {
+  list-style:none;
+}
 
 
 body {
@@ -94,4 +152,16 @@ body {
 
 .messages > li:nth-child(odd) {
   background: #e0f3db;
+}
+
+.medium_image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.icon_image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
 }

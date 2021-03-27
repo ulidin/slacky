@@ -1,0 +1,27 @@
+<div class="topnav">
+
+
+    <!-- Left-aligned links (default) -->
+    <a href="/channels">Home</a>
+
+    <% if (typeof user !=='undefined' ) { %>
+
+        <!-- Centered link -->
+        <div class="topnav-centered">
+            <a>Logged in as <%=user.name %></a>
+        </div>
+
+
+        <!-- Right-aligned links -->
+        <div class="topnav-right">
+
+            <a href="/users/logout">Log Out</a>
+
+            <input type="text" value="<%= user.id %>" id="userId" hidden>
+            <% } else { %>
+                <a href="/login">Log In</a>
+                <a href="/register">Register</a>
+                <% } %>
+        </div>
+
+</div>
