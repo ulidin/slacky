@@ -29,7 +29,7 @@ html, body {
 }
 .content {
   margin-left: 260px;
-  height: calc(100% - 50px);
+  height: calc(100% - 200px);
   overflow: auto;
 }
 p {
@@ -52,15 +52,15 @@ body {
   padding: 0.25rem;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 251px;
   right: 0;
   display: flex;
-  height: 3rem;
+  height: 5rem;
   box-sizing: border-box;
   backdrop-filter: blur(10px);
 }
 
-#input {
+.input {
   border: none;
   padding: 0 1rem;
   flex-grow: 1;
@@ -68,7 +68,7 @@ body {
   margin: 0.25rem;
 }
 
-#input:focus {
+.input:focus {
   outline: none;
 }
 
@@ -82,16 +82,16 @@ body {
   color: #fff;
 }
 
-#messages {
+.messages {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-#messages > li {
+.messages > li {
   padding: 0.5rem 1rem;
 }
 
-#messages > li:nth-child(odd) {
+.messages > li:nth-child(odd) {
   background: #e0f3db;
 }
