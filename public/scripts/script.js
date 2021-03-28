@@ -28,10 +28,12 @@ renderWhoIsOnline = (socketUsers) => {
     let onlineId = user.userId + 'online';
     if (document.getElementById(onlineId) === null) {
       const item = document.createElement('span');
-      item.innerHTML = ' online';
+      item.innerHTML = 'online';
+      item.style.marginLeft = '10px'
       item.classList.add('onlineSpan');
       if (user.userId === userId) {
-        item.innerHTML += ' (you)';
+        item.innerHTML += '  you';
+        item.style.marginLeft = '10px'
       }
       item.id = user.userId + 'online';
       const onlineUser = document.getElementById(user.userId);
@@ -63,6 +65,7 @@ renderUsers = (users) => {
     const a = document.createElement('a');
     a.href = `/channels/DMorProfile/${user._id}`;
     a.innerHTML = user.name;
+    a.style.marginLeft = "10px"
     li.appendChild(a);
     usersUl.appendChild(li);
   });
