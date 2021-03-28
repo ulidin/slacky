@@ -1,19 +1,19 @@
-<h1>Please login</h1>
-<% if (typeof message !=='undefined' ) { %>
-    <p>
-        <%= message %>
-    </p>
-    <% } %>
-        <form action="/users/login" method="POST">
-            <div class="">
-                <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Enter Email" autocomplete="username"
-                    value="dev@test.user" />
-            </div>
-            <div class="">
-                <label for="password">Password</label>
-                <input type="password" name="password" placeholder="Enter Password" autocomplete="current-password"
-                    value="dev@test.user" />
-            </div>
-            <button class="w-100 btn btn btn-outline-primary" type="submit">Sign in</button>
-        </form>
+<div class="container">
+    <div class="form-account">
+        <div class="header-account">Member Login</div>
+        <% if (typeof message !=='undefined' ) { %>
+            <p>
+                <%= message %>
+            </p>
+            <% } %>
+                <div class="body">
+                    <form id="form-account-body" action="/users/login" method="POST">
+                        <input class="input-account" type="email" name="email" placeholder="Enter Email"
+                            autocomplete="username" value="dev@test.user" />
+                        <input class="input-account" type="password" name="password" placeholder="Enter Password"
+                            autocomplete="current-password" value="dev@test.user" />
+                        <input class="input-account" type="submit" value="Login Now">
+                    </form>
+                </div>
+    </div>
+</div>

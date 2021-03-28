@@ -3,7 +3,7 @@ module.exports = {
       if (req.isAuthenticated()) {
         return next();
       }
-      const message = 'Please login to view this resource.';
+      const message = 'Please login enjoy SLACKY.';
       res.render('login', { message });
     },
   };

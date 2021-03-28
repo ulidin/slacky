@@ -1,30 +1,31 @@
-<h1>Register page</h1>
-<% if (typeof message !=='undefined' ) { %>
-    <p>
-        <%= message %>
-    </p>
-    <% } %>
-        <form action="/users/register" method="POST">
-            <div>
-                <label for="name">Name</label>
-                <input type="name" name="name" autocomplete="name" placeholder="Enter Name"
-                    value="<%= typeof name != 'undefined' ? name : '' %>" />
-            </div>
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" autocomplete="email" placeholder="Enter Email"
-                    value="<%= typeof email != 'undefined' ? email : '' %>" />
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" name="password" autocomplete="new-password" placeholder="Create Password"
-                    value="<%= typeof password != 'undefined' ? password : '' %>" />
-            </div>
-            <div>
-                <label for="password2">Confirm Password</label>
-                <input type="password" name="password2" autocomplete="new-password" placeholder="Confirm Password"
-                    value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
-        </form>
-        <p>Have An Account? <a href="/login">Login</a></p>
+<div class="container-register">
+    <div class="form-account-register">
+        <div class="header-account">Register for membership</div>
+        <% if (typeof message !=='undefined' ) { %>
+            <p>
+                <%= message %>
+            </p>
+            <% } %>
+                <div class="body">
+                    <form id="form-account-body" action="/users/register" method="POST">
+
+                        <input class="input-account" type="name" name="name" autocomplete="name"
+                            placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" />
+
+                        <input class="input-account" type="email" name="email" autocomplete="email"
+                            placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" />
+
+                        <input class="input-account" type="password" name="password" autocomplete="new-password"
+                            placeholder="Create Password"
+                            value="<%= typeof password != 'undefined' ? password : '' %>" />
+
+                        <input class="input-account" type="password" name="password2" autocomplete="new-password"
+                            placeholder="Confirm Password"
+                            value="<%= typeof password2 != 'undefined' ? password2 : '' %>" />
+
+                        <input class="input-account" type="submit" value="Register">
+                    </form>
+                    <p>Have An Account? <a href="/login">Login</a></p>
+                </div>
+    </div>
+</div>
