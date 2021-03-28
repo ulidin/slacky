@@ -11,7 +11,7 @@ html, body {
 .topnav {
   position: relative;
   overflow: hidden;
-  background-color: #66b5b8;
+  background-color: #2196F3;
 }
 
 .topnav a {
@@ -24,7 +24,7 @@ html, body {
 }
 
 .topnav a:hover {
-  background-color: #417a7c;
+  background-color: #136db6;
   color: white;
 }
 
