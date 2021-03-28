@@ -47,7 +47,7 @@ renderChannels = (channelList) => {
     const li = document.createElement('li');
     const a = document.createElement('a');
     a.href = `/channels/${channel._id}`;
-    a.innerHTML = `#${channel.name}`;
+    a.innerHTML = `>>${channel.name}`;
     li.appendChild(a);
     channelsUl.insertBefore(li, create);
   });
