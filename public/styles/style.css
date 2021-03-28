@@ -185,7 +185,7 @@ div, input {
 }
 
 .container-register {
-  margin:0 413px 0 413px;
+  margin:auto;
   width: 500px;
   height: 480px;
   padding: 35px 0;
