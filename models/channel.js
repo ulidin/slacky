@@ -6,7 +6,7 @@ const channelSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 1,
-    maxLength: 100,
+    maxLength: 50,
   },
   description: {
     type: String,

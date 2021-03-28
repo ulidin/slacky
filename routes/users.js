@@ -1,8 +1,9 @@
 const express = require('express');
-const User = require('../models/users');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+
+const User = require('../models/users');
 const { ensureAuthenticated } = require('../config/auth.js');
 
 router.use(express.urlencoded({ extended: true }));
@@ -11,7 +12,7 @@ router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
   let errors = '';
   console.log(
-    'For testing purposes. The login submitted was email: ' +
+    'Only for testing. The login submitted was email: ' +
       email +
       ' and password: ' +
       password
@@ -38,7 +39,7 @@ router.post('/register', (req, res) => {
     User.findOne({ email: email }).exec((err, user) => {
       if (err) console.log(err);
       if (user) {
-        errors += 'Email already registered.';
+        errors += 'Email already registered. Change or Login to your account';
         res.render('register', {
           message: errors,
           name,
@@ -64,7 +65,7 @@ router.post('/register', (req, res) => {
               .then((value) => {
                 console.log('The following user was created:');
                 console.log(value);
-                const message = 'You have now registered!';
+                const message = 'You have successfuly registered!';
                 res.render('login', { message });
               })
               .catch((value) => console.log(value));
@@ -119,7 +120,7 @@ router.post('/profile/uploadPhoto', ensureAuthenticated, (req, res) => {
       { $set: { profilePhoto: file_name } },
       (err) => {
         if (err) console.log(err);
-        const message = 'File sucessfully uploaded';
+        const message = 'Sucessfully uploaded';
         res.render('profile', { user: req.user, message });
       }
     );

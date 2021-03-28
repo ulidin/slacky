@@ -1,10 +1,11 @@
-const path = require('path');
 const express = require('express');
 const app = express();
 const expressEjsLayout = require('express-ejs-layouts');
 const fileUpload = require('express-fileupload');
-const passport = require('passport');
 const session = require('express-session');
+
+const passport = require('passport');
+const path = require('path');
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 require('./socket')(io);
@@ -22,9 +23,11 @@ app.use(passport.session());
 
 app.set('view engine', 'ejs');
 app.use(expressEjsLayout);
+
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(fileUpload({ createParentPath: true }));
+
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/slacky', {

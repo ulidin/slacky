@@ -25,7 +25,6 @@ router.post('/create', ensureAuthenticated, (req, res) => {
 
 
 //Handle individual channel
-
 router.get('/:id', ensureAuthenticated, (req, res) => {
   Channel.findById(req.params.id)
     .populate({
@@ -41,14 +40,16 @@ router.get('/:id', ensureAuthenticated, (req, res) => {
     });
 });
 
+
 //DMorProfile
 router.get('/DMorProfile/:id', ensureAuthenticated, (req, res) => {
   if (req.params.id === req.user._id.toString()) {
     res.redirect('/users/profile');
   } else {
-    res.send('<h1>Here we will add DM functionality</h1>');
+    res.send('<h1>Under construction! More functionality to come.</h1>');
   }
 });
+
 
 //Edit and Delete posts
 router.get(
@@ -68,6 +69,7 @@ router.get(
   }
 );
 
+
 router.post(
   '/editPost/:channel_id/:post_id',
   ensureAuthenticated,
@@ -81,7 +83,7 @@ router.post(
         res.redirect(`/channels/${req.params.channel_id}`);
       });
     } else {
-      res.send('<h1>You are not authorized to do this.</h1>');
+      res.send('<h1>You are not authorized.</h1>');
     }
   }
 );
@@ -113,7 +115,7 @@ router.get(
             res.redirect(`/channels/${req.params.channel_id}`);
           });
         } else {
-          res.send('<h1>You are not authorized to do this.</h1>');
+          res.send('<h1>You are not authorized.</h1>');
         }
       });
   }

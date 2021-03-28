@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
     minLength: 1,
-    maxLength: 1000,
+    maxLength: 1500,
   },
   date: {
     type: Date,

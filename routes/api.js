@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const Channel = require('../models/channel');
 const User = require('../models/users');
 const Post = require('../models/post');
+
 const { ensureAuthenticated } = require('../config/auth.js');
 router.use(express.json());
 
